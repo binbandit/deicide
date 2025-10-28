@@ -1,0 +1,51 @@
+{
+  "name": "deicide",
+  "description": "A zero-config CLI for TypeScript monorepos",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binbandit/deicide.git"
+  },
+  "homepage": "https://github.com/binbandit/deicide#readme",
+  "bugs": {
+    "url": "https://github.com/binbandit/deicide/issues"
+  },
+  "keywords": [
+    "cli",
+    "typescript",
+    "monorepo",
+    "zero-config",
+    "tooling"
+  ],
+  "bin": {
+    "deicide": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown src/index.ts --platform=node --outfile dist/index.js",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.19.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "commander": "^14.0.2",
+    "globby": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "tsx": "^4.20.6",
+    "tsdown": "^0.15.11",
+    "typescript": "^5.9.3"
+  }
+}
