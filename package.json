@@ -1,7 +1,7 @@
 {
   "name": "deicide",
   "description": "A zero-config CLI for TypeScript monorepos",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "type": "module",
   "repository": {
