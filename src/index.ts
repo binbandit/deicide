@@ -26,16 +26,14 @@ program
   .command('dev')
   .description('Start app and dependencies (comming soon)')
   .argument('<app>', 'App package name')
-  .action(() => {
-    console.log("deicide dev: Not implemented yet. Try `deicide init` first!");
-  });
+  .action((app) =>
+    devCommand(app)
+  );
 
 program
   .command('ci')
   .description('Run CI for affected packages (comming soon)')
   .option("--affected", "Only run for changed packages")
-  .action(() => {
-    console.log("deicide ci: Not implemented yet. Try `deicide init` first!");
-  });
+  .action((options) => ciCommand(options));
 
 program.parse();

@@ -28,9 +28,9 @@ export async function initCommand(cwd: string = process.cwd()) {
         const pkgData = JSON.parse(readFileSync(pkgJson, "utf-8"));
         packages.push({
           name: pkgData.name,
-          path,
-          relativePath: relative(cwd, path),
-        });
+          path, relativePath: relative(cwd, path),
+          dependencies: Object.keys(pkgData.dependencies || {}).filter(dep => dep.startsWith("@")),
+        })
       }
     }
   }
@@ -96,12 +96,13 @@ export async function initCommand(cwd: string = process.cwd()) {
 
   const manager = detectPackageManager(cwd);
   if (manager === "yarn-berry") {
-    console.log("\nDetected Yarn Berry (with PnP). To enable full TypeScript support in VS Code:");
-    console.log("Run: yarn dlx @yarnpkg/sdks vscode");
-    console.log("This sets up the Yarn TS SDK for proper module resolution.");
+    console.log("\nDetected Yarn Berry (with PnP). To enable TypeScript support in your editor:");
+    console.log("Run: yarn dlx @yarnpkg/sdks <editor>");
+    console.log("Supported editors include 'vscode' for VS Code, 'vim' for Vim/Neovim, 'base' for general, etc. Check Yarn docs for more.");
   } else if (manager === "unknown") {
     console.log("\nCould not detect package manager. Ensure your repo has a lock file (package-lock.json, yarn.lock, or pnpm-lock.yaml).");
   }
 
+  console.log("\nNote: For best TypeScript monorepo support, ensure your editor uses project references. In Neovim, configure nvim-lspconfig with tsserver and root patterns like tsconfig.json. In JetBrains IDEs, enable TypeScript language service with path mappings.");
   console.log("\nRun `deicide ts-doctor` to check for LSP issues");
 }

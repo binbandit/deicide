@@ -52,5 +52,6 @@ export async function tsDoctorCommand(cwd: string = process.cwd()) {
     } else {
       console.log(`- No major LSP issues detected. Your monorepo is healthy!`);
     }
+    console.log("\nFor Neovim users: Ensure nvim-lspconfig is set up with tsserver and monorepo root patterns. For JetBrains: Check TypeScript service settings for path mappings.");
   }
 }

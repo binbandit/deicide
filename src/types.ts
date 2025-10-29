@@ -2,6 +2,7 @@ export interface PackageInfo {
   name: string;
   path: string;
   relativePath: string;
+  dependencies: string[];
 }
 
 export interface TsConfig {
